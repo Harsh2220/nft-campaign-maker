@@ -19,7 +19,7 @@ type CampaignDetails = {
 
 export default function Create() {
   const [image, setImage] = useState<File | null>(null);
-  const { address } = useAccount()
+  const { address } = useAccount();
   const [campaignDetails, setCampaignDetails] = useState<CampaignDetails>({
     description: null,
     title: null,
@@ -84,13 +84,6 @@ export default function Create() {
         ...prev,
         metadata: `ipfs://${metadatahash}`,
       }));
-      toast.update(toastPromise, {
-        render: "Check your wallet",
-        theme: "dark",
-        type: "success",
-        isLoading: true,
-      });
-      console.log(config)
       //@ts-expect-error
       const provider = new providers.Web3Provider(window.ethereum);
       const contract = new Contract(
@@ -146,7 +139,7 @@ export default function Create() {
                         onChange={(e) => {
                           setCampaignDetails(() => ({
                             ...campaignDetails,
-                            collectionname: e.target.value
+                            collectionname: e.target.value,
                           }));
                         }}
                       />
@@ -164,7 +157,7 @@ export default function Create() {
                         onChange={(e) => {
                           setCampaignDetails(() => ({
                             ...campaignDetails,
-                            title: e.target.value
+                            title: e.target.value,
                           }));
                         }}
                       />
@@ -184,7 +177,7 @@ export default function Create() {
                         onChange={(e) => {
                           setCampaignDetails(() => ({
                             ...campaignDetails,
-                            description: e.target.value
+                            description: e.target.value,
                           }));
                         }}
                       />
@@ -234,20 +227,17 @@ export default function Create() {
                         </span>
                       </div>
                     </div>
-                    {
-                      image && (
-                        <div className="w-full h-64 my-4">
-                          {
-                            image && (
-                              <img
-                                src={URL.createObjectURL(image)}
-                                alt={""}
-                                className="rounded-lg object-contain w-full h-full"
-                              />
-                            )}
-                        </div>
-                      )
-                    }
+                    {image && (
+                      <div className="w-full h-64 my-4">
+                        {image && (
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={""}
+                            className="rounded-lg object-contain w-full h-full"
+                          />
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-8 text-right">
