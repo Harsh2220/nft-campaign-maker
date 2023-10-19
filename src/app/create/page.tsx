@@ -51,6 +51,15 @@ export default function Create() {
         return;
       }
 
+      if (
+        !campaignDetails.title &&
+        !campaignDetails.description &&
+        !campaignDetails.collectionname
+      ) {
+        toast.error("Please enter details");
+        return;
+      }
+
       if (!image) {
         toast.error("Please select an image");
         return;
